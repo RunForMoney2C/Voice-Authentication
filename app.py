@@ -24,6 +24,11 @@ def index():
 def index2():
     return render_template('register.html')
 
+@app.route('/addRegion', methods=['POST'])
+def addRegion():
+    print(request.form)
+
+
 @socketio.on('my_event', namespace='/test')
 def test_message(message):
     session['receive_count'] = session.get('receive_count', 0) + 1

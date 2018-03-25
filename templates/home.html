@@ -97,7 +97,7 @@
       </header>
       <div>
          <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-            <div class="wrap-login100">
+            <div class="wrap-login100" style="margin-top:-25% margin-bottom:-25%">
                <span class="login100-form-logo">
                <i class="zmdi zmdi-landscape"></i>
                </span>
@@ -108,18 +108,34 @@
                   <input class="input100" type="text" placeholder="Username">
                   <span class="focus-input100" data-placeholder="&#xf207;"></span>
                </div>
-               <div class="contact100-form-checkbox">
+               <!-- <div class="contact100-form-checkbox">
                   <input class="input-checkbox100" id="ckb1" type="checkbox">
                   <label class="label-checkbox100" for="ckb1">
                   Remember me
                   </label>
-               </div>
-               <form id="connect" method="POST" action="#" class="container-login100-form-btn">
-                  <input type="submit" value="Voice Authentication" class="login100-form-btn">
-               </form>
-               <form id="disconnect" method="POST" action="#" class="container-login100-form-btn">
-                  <input type="submit" value="Stop" class="login100-form-btn">
-               </form>
+               </div> -->
+               <!--<form id="connect" method="POST" action="#" class="container-login100-form-btn">-->
+                  <!--<input type="submit" value="Voice Authentication" class="login100-form-btn">-->
+               <!--</form>-->
+               <!--<form id="disconnect" method="POST" action="#" class="container-login100-form-btn">-->
+                  <!--<input type="submit" value="Stop" class="login100-form-btn">-->
+               <!--</form>-->
+
+               <div class="row">
+                     <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                           <form id="connect" method="POST" action="#" class="container-login100-form-btn">
+                           <input type="submit" value="Voice Record" class="login100-form-btn">
+                           </form>
+                        </div>
+                        <div class="col-md-5">
+
+                           <form id="disconnect" method="POST" action="#" class="container-login100-form-btn">
+                           <input type="submit" value="Stop" class="login100-form-btn">
+                           </form>
+                        </div>
+                        <div class="col-md-1"></div>
+                     </div>
                <div id="log" class="container-login100-form-btn" ></div>
                <script>
                   var namespace = '/test';
