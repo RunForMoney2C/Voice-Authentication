@@ -18,8 +18,11 @@ socketio = SocketIO(app, binary=True)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('home.html')
 
+@app.route('/register.html')
+def index2():
+    return render_template('register.html')
 
 @socketio.on('my_event', namespace='/test')
 def test_message(message):
