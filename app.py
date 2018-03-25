@@ -1,11 +1,14 @@
 
-from flask import Flask, render_template, session, request
+from flask import Flask, render_template, session, request,flash,redirect,url_for
 from flask_socketio import SocketIO, emit, disconnect
 
 import scipy.io.wavfile
 import numpy as np
 from collections import OrderedDict
 import sys
+import json
+from dbStuff import DBHelper
+
 
 # Set this variable to "threading", "eventlet" or "gevent" to test the
 # different async modes, or leave it set to None for the application to choose
@@ -16,6 +19,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, binary=True)
 
+db = DBHelper()
+db.setup()
+
 @app.route('/')
 def index():
     return render_template('home.html')
@@ -24,10 +30,21 @@ def index():
 def index2():
     return render_template('register.html')
 
-@app.route('/addRegion', methods=['POST'])
+@app.route('/addRegion', methods=['GET', 'POST'])
 def addRegion():
-    print(request.form)
-
+    data = json.dumps(dict(request.form))
+    a = list(json.loads(data).values())
+    dataToQuery = []
+    for element in a:
+        dataToQuery.append(element[0])
+    print(dataToQuery)
+    resp = db.check_details(dataToQuery)
+    print(resp)
+    if len(resp) == 1:
+        error = 'You were successfully saved you data'
+        return render_template('success.html')
+    elif len(resp) == 0:
+        return render_template('failure.html')
 
 @socketio.on('my_event', namespace='/test')
 def test_message(message):

@@ -25,6 +25,20 @@
          background-image: url({{ url_for('static', filename='Images/bg-01.jpg') }});
          }
       </style>
+	  <script type="text/javascript">
+    var btn = document.getElementById('homepage'),
+    clicked = false;
+
+btn.addEventListener('click', function () {
+  clicked = true;
+});
+
+window.onbeforeunload = function () {
+  if(!clicked) {
+    return 'If you resubmit this page, progress will be lost.';
+  }
+};
+</script>
       <!--===============================================================================================-->	
       <!--===============================================================================================-->
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -138,8 +152,8 @@
                            <input type="text" placeholder="Enter IFS Code" name="ifsc" required class="login100-form-btn">
                         </div>
                         <div style="margin-left:16%">
-                           <label for="email" ><b>Account CIF:</b></label>
-                           <input type="text" placeholder="Enter Account CIF" name="acccif" required class="login100-form-btn">
+                           <label for="email" ><b>Activation Code:</b></label>
+                           <input type="text" placeholder="Enter Activation Code" name="accactivationcode" required class="login100-form-btn">
                         </div>
                      </div>
                      <br>

@@ -25,7 +25,21 @@
          background-image: url({{ url_for('static', filename='Images/bg-01.jpg') }});
          }
       </style>
-      <!--====="{{ url_for('static', filename='axis_bank.png') }}"==========================================================================================-->	
+	  <script type="text/javascript">
+    var btn = document.getElementById('homepage'),
+    clicked = false;
+
+btn.addEventListener('click', function () {
+  clicked = true;
+});
+
+window.onbeforeunload = function () {
+  if(!clicked) {
+    return 'If you resubmit this page, progress will be lost.';
+  }
+};
+</script>
+      <!--===============================================================================================-->	
       <!--===============================================================================================-->
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
       <!--===============================================================================================-->
@@ -45,10 +59,6 @@
       <!--===============================================================================================-->
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css') }}">
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-      <!--===============================================================================================-->
-      <!--[if (gt IE 9)|!(IE)]><
-      <script src="js/jquery.mobile.customized.min.js"></script>
-      <script src="js/wow.js"></script>!-->
       <script>
          $(document).ready(function () {
          	if ($('html').hasClass('desktop')) {
@@ -56,18 +66,6 @@
          	}
          });
       </script>
-      <!--<![endif]-->
-      <!--[if lt IE 8]>
-      <div style=' clear: both; text-align:center; position: relative;'>
-         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-         <img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-         </a>
-      </div>
-      <![endif]-->
-      <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
-      <![endif]-->
    </head>
    <body class="index" >
       <!--==============================header=================================-->
@@ -82,12 +80,9 @@
                      </h1>
                      <nav>
                         <ul class="sf-menu">
-                           <li class="current"><a href="http://127.0.0.1:5000">Home</a>
-                           </li>
-                           <!--<li><a href="index-1.html">Voice Login</a></li>-->
-                           <li><a href="register.html">Register</a></li>
-                           <!--<li><a href="index-3.html">Services</a></li>
-                              <li><a href="index-4.html">Contacts</a></li>-->
+                           <li ><a href="http://127.0.0.1:5000">Home</a>
+                           </li >
+                           <li class="current"><a href="register.html">Register</a></li>
                         </ul>
                      </nav>
                   </div>
@@ -97,31 +92,79 @@
       </header>
       <div>
          <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-            <div class="wrap-login100" style="margin-top:-25% margin-bottom:-25%">
-               <span class="login100-form-logo">
-               <i class="zmdi zmdi-landscape"></i>
+            <div class="wrap-login200">
+               <!-- <span class="login100-form-logo">
+               <i class="zmdi zmdi-landscape"></i> -->
                </span>
-               <span class="login100-form-title p-b-34 p-t-27">
-               Log in
+               <span class="login100-form-title p-b-10 p-t-10">
+               Invalid Details entered<br><br>Login Again
                </span>
-               <div class="wrap-input100 validate-input">
-                  <input class="input100" type="text" placeholder="Username">
-                  <span class="focus-input100" data-placeholder="&#xf207;"></span>
-               </div>
-               <!-- <div class="contact100-form-checkbox">
-                  <input class="input-checkbox100" id="ckb1" type="checkbox">
-                  <label class="label-checkbox100" for="ckb1">
-                  Remember me
-                  </label>
-               </div> -->
-               <!--<form id="connect" method="POST" action="#" class="container-login100-form-btn">-->
-                  <!--<input type="submit" value="Voice Authentication" class="login100-form-btn">-->
-               <!--</form>-->
-               <!--<form id="disconnect" method="POST" action="#" class="container-login100-form-btn">-->
-                  <!--<input type="submit" value="Stop" class="login100-form-btn">-->
-               <!--</form>-->
+               <div class="container">
+                  <form id="sendForm" action="{{ url_for('addRegion') }}" method="POST">
+                     <br>
+                     <div class="row">
+                        <div style="margin-left:7%">
+                           <label for="email" ><b>First Name:</b></label>
+                           <input type="text" placeholder="Enter Your First Name" name="fname" required class="login100-form-btn">
+                        </div>
+                        <div style="margin-left:16%">
+                           <label for="email" ><b>Last Name:</b></label>
+                           <input type="text" placeholder="Enter Your Last Name" name="lname" required  class="login100-form-btn">
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row">
+                        <div style="margin-left:7%">
+                           <label for="email" ><b>Email:</b></label>
+                           <input type="text" placeholder="Enter Email" name="email" required class="login100-form-btn" >
+                        </div>
+                        <div style="margin-left:16%">
+                           <label for="email" ><b>Mobile Number:</b></label>
+                           <input type="text" placeholder="Enter 10 digit Mobile Number" name="mnumber" required class="login100-form-btn">
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row">
+                        <div style="margin-left:7%">
+                           <label for="email" ><b>Account Number:</b></label>
+                           <input type="text" placeholder="Enter Bank Account Number" name="accnumber" required class="login100-form-btn">
+                        </div>
+                        <div style="margin-left:16%">
+                           <label for="email" ><b>ATM Number:</b></label>
+                           <input type="text" placeholder="Enter ATM Number" name="atmnumber" required class="login100-form-btn">
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row">
+                        <div style="margin-left:7%">
+                           <label for="email" ><b>ATM Pin:</b></label>
+                           <input type="password" placeholder="Enter ATM Pin" name="atmpin" required class="login100-form-btn">
+                        </div>
+                        <div style="margin-left:16%">
+                           <label for="email" ><b>Account CIF:</b></label>
+                           <input type="text" placeholder="Enter Account CIF" name="acccif" required class="login100-form-btn">
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row">
+                        <div style="margin-left:7%">
+                           <label for="email" ><b>IFS Code:</b></label>
+                           <input type="text" placeholder="Enter IFS Code" name="ifsc" required class="login100-form-btn">
+                        </div>
+                        <div style="margin-left:16%">
+                           <label for="email" ><b>Activation Code:</b></label>
+                           <input type="text" placeholder="Enter Activation Code" name="accactivationcode" required class="login100-form-btn">
+                        </div>
+                     </div>
+                     <br>
+                     <div style="text-align: center;">
+                        <p style = "color:black"><b>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a></b>.</p>
+                        <br>
+                     </div>
+                  </form>
 
-               <div class="row">
+
+                  <div class="row">
                      <div class="col-md-1"></div>
                         <div class="col-md-5">
                            <form id="connect" method="POST" action="#" class="container-login100-form-btn">
@@ -136,30 +179,35 @@
                         </div>
                         <div class="col-md-1"></div>
                      </div>
-               <div id="log" class="container-login100-form-btn" ></div>
+                  <div id="log" class="container-login100-form-btn" ></div>
+                  <br>
+                  <div class="container-login100-form-btn">
+                     <input type="button" value="Submit" onclick="processForm();" class="login100-form-btn">
+                  </div>
+               </div>
                <script>
                   var namespace = '/test';
                   var socket = null;
                   var mediaStream = null;
-                  
+
                   // prepare button state
                   $('#disconnect input')[0].disabled = true;
-                  
+
                   // audio functions
                   function initializeRecorder(stream){
                      // https://stackoverflow.com/a/42360902/466693
                      mediaStream = stream;
-                  
+
                      // get sample rate
                      audio_context = new AudioContext;
                      sampleRate = audio_context.sampleRate;
                      console.log('<sample_rate>', sampleRate);
                      socket.emit('sample_rate', sampleRate);
-                  
+
                      var audioInput = audio_context.createMediaStreamSource(stream);
-                  
+
                      console.log("Created media stream.");
-                  
+
                      var bufferSize = 4096;
                      // record only 1 channel
                      var recorder = audio_context.createScriptProcessor(bufferSize, 1, 1);
@@ -168,7 +216,7 @@
                      // connect stream to our recorder
                      audioInput.connect(recorder);
                      // connect our recorder to the previous destination
-                     recorder.connect(audio_context.destination);          
+                     recorder.connect(audio_context.destination);
                   }
                   function recorderProcess(e) {
                     var left = e.inputBuffer.getChannelData(0);
@@ -184,7 +232,7 @@
                     console.log(buf);
                     return buf.buffer;
                   }
-                  
+
                   $('form#connect').submit(function(event) {
                       if(socket == null){
                         socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
@@ -215,7 +263,10 @@
                       $('#disconnect input')[0].disabled = true;
                       return false;
                   });
-				  
+                  function processForm() {
+                     document.getElementById('sendForm').submit();
+                  }
+
                </script>
             </div>
          </div>
