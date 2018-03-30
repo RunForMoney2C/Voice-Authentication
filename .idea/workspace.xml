@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7315ecab-6577-4486-9c02-969564e250a2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Testing/convertByteBackToWave.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Testing/audio.txt" afterPath="$PROJECT_DIR$/Testing/audio.txt" />
+      <change beforePath="$PROJECT_DIR$/Testing/convertByteBackToWave.py" afterPath="$PROJECT_DIR$/Testing/convertByteBackToWave.py" />
+      <change beforePath="$PROJECT_DIR$/Testing/example.wav" afterPath="$PROJECT_DIR$/Testing/example.wav" />
+      <change beforePath="$PROJECT_DIR$/out.wav" afterPath="$PROJECT_DIR$/out.wav" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,8 +19,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="46" column="39" lean-forward="false" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
+            <state relative-caret-position="51">
+              <caret line="48" column="22" lean-forward="false" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
               <folding>
                 <element signature="e#1#82#0" expanded="true" />
               </folding>
@@ -29,8 +31,8 @@
       <file leaf-file-name="convertByteBackToWave.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Testing/convertByteBackToWave.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="45" column="1" lean-forward="false" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+            <state relative-caret-position="148">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -373,8 +375,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="46" column="39" lean-forward="false" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
+        <state relative-caret-position="51">
+          <caret line="48" column="22" lean-forward="false" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
           <folding>
             <element signature="e#1#82#0" expanded="true" />
           </folding>
@@ -383,8 +385,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Testing/convertByteBackToWave.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="45" column="1" lean-forward="false" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+        <state relative-caret-position="148">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
