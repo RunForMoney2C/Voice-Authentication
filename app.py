@@ -39,11 +39,10 @@ def addRegion():
         dataToQuery.append(element[0])
     print(dataToQuery)
     resp = db.check_details(dataToQuery)
-    print(resp)
-    if len(resp) == 1:
-        error = 'You were successfully saved you data'
+    #print(resp)
+    if resp == 1:
         return render_template('success.html')
-    elif len(resp) == 0:
+    else:
         return render_template('failure.html')
 
 @socketio.on('my_event', namespace='/test')
