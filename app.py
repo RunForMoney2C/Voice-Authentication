@@ -38,8 +38,11 @@ def addRegion():
     for element in a:
         dataToQuery.append(element[0])
     print(dataToQuery)
-    resp = db.check_details(dataToQuery)
-    #print(resp)
+    if len(dataToQuery) > 0:
+        resp = db.check_details(dataToQuery)
+    else:
+        resp = 0
+        
     if resp == 1:
         return render_template('success.html')
     else:

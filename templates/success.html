@@ -79,14 +79,111 @@
       </header>
       <div>
          <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-            <div class="wrap-login200">
-               
-               <span class="login100-form-title">
-               Details Succesfully Verified and Saved<br><br>Please click on home tab for voice login
-			   
+            <div class="wrap-login100" style="margin-top:-25% margin-bottom:-25%">
+               <span class="login100-form-logo">
+               <i class="zmdi zmdi-landscape"></i>
                </span>
-			</div>
-		</div>
+               <span class="login100-form-title p-b-34 p-t-27">
+               Record Voice
+               </span>
+               <div class="row">
+                     <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                           <form id="connect" method="POST" action="#" class="container-login100-form-btn">
+                           <input type="submit" value="Voice Record" class="login100-form-btn">
+                           </form>
+                        </div>
+                        <div class="col-md-5">
+
+                           <form id="disconnect" method="POST" action="#" class="container-login100-form-btn">
+                           <input type="submit" value="Stop" class="login100-form-btn">
+                           </form>
+                        </div>
+                        <div class="col-md-1"></div>
+                     </div>
+               <div id="log" class="container-login100-form-btn" ></div>
+               <script>
+                  var namespace = '/test';
+                  var socket = null;
+                  var mediaStream = null;
+                  
+                  // prepare button state
+                  $('#disconnect input')[0].disabled = true;
+                  
+                  // audio functions
+                  function initializeRecorder(stream){
+                     // https://stackoverflow.com/a/42360902/466693
+                     mediaStream = stream;
+                  
+                     // get sample rate
+                     audio_context = new AudioContext;
+                     sampleRate = audio_context.sampleRate;
+                     console.log('<sample_rate>', sampleRate);
+                     socket.emit('sample_rate', sampleRate);
+                  
+                     var audioInput = audio_context.createMediaStreamSource(stream);
+                  
+                     console.log("Created media stream.");
+                  
+                     var bufferSize = 4096;
+                     // record only 1 channel
+                     var recorder = audio_context.createScriptProcessor(bufferSize, 1, 1);
+                     // specify the processing function
+                     recorder.onaudioprocess = recorderProcess;
+                     // connect stream to our recorder
+                     audioInput.connect(recorder);
+                     // connect our recorder to the previous destination
+                     recorder.connect(audio_context.destination);          
+                  }
+                  function recorderProcess(e) {
+                    var left = e.inputBuffer.getChannelData(0);
+                    socket.emit('audio', left);
+                    //socket.emit('audio', convertFloat32ToInt16(left));
+                  }
+                  function convertFloat32ToInt16(buffer) {
+                    l = buffer.length;
+                    buf = new Int16Array(l);
+                    while (l--) {
+                      buf[l] = Math.min(1, buffer[l])*0x7FFF;
+                    }
+                    console.log(buf);
+                    return buf.buffer;
+                  }
+                  
+                  $('form#connect').submit(function(event) {
+                      if(socket == null){
+                        socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+                        socket.on('connect', function() {
+                  socket.emit('my_event', {data: 'Read this: Do not go gentle into that good night,\nOld age should burn and rave at close of day;\nRage, rage against the dying of the light.\nThough wise men at their end know dark is right,\nBecause their words had forked no lightning they\nDo not go gentle into that good night.'});
+                            socket.emit('my_event', {data: 'Recording Voice...'});
+                            navigator.getUserMedia({audio: true}, initializeRecorder, function(a, b, c){
+                              console.log(a, b, c);
+                            });
+                        });
+                        socket.on('my_response', function(msg) {
+                            $('#log').append('<br>' + $('<div/>').text(msg.data).html());
+                        });
+                      }
+                      else {
+                        socket.disconnect();
+                        socket.connect();
+                      }
+                      $('#connect input')[0].disabled = true;
+                      $('#disconnect input')[0].disabled = false;
+                      return false;
+                  });
+                  $('form#disconnect').submit(function(event) {
+                      mediaStream.getAudioTracks()[0].stop();
+                      audio_context.close();
+                      socket.emit('disconnect_request');
+                      $('#connect input')[0].disabled = false;
+                      $('#disconnect input')[0].disabled = true;
+                      return false;
+                  });
+				  
+               </script>
+            </div>
+         </div>
       </div>
       <footer id="footer">
          <div class="container">
